@@ -1,0 +1,44 @@
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myClientLabel">Edit a Author</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group" ng-show="vm.auteur.id">
+            <label for="id">ID</label>
+            <input type="textr" class="form-control" id="id" name="id"
+                   ng-model="vm.auteur.id" readonly />
+        </div>
+        <div class="form-group" >
+            <label class="control-label" for="field_name">Nom : </label>
+            <input type="text" class="form-control" name="nom" id="field_name"
+                   ng-model="vm.auteur.nom"
+                   />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_birthDay">Matricule :</label>
+            <input type="text" class="form-control" name="age" id="field_birthDay"
+                   ng-model="vm.auteur.matricule"
+                   />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_email">Email :</label>
+            <div>
+               <input type="email" class="form-control" name="age" id="field_email"
+                   ng-model="vm.auteur.email"
+                   />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>update</span>
+        </button>
+    </div>
+</form>
+

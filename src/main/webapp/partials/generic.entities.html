@@ -1,0 +1,31 @@
+<div class="" >
+    <div >
+        <ul class="nav nav-header nav-pills">
+            <li ng-class="{ active:isSet(1) }">
+                <a href  ng-click="onclickNetwork()">Network</a>
+            </li>
+            <li ng-class="{ active:isSet(2) }">
+                <a href  ng-click="onclickBuilding()">Building</a>
+            </li>
+            <li ng-class="{ active:isSet(3) }">
+                <a href  ng-click="onclickSubnet()">Subnet</a>
+            </li>
+            <li ng-class="{ active:isSet(4) }">
+                <a href  ng-click="onclickVlan()">Vlan</a>
+            </li>
+            <li ng-class="{ active:isSet(5) }">
+                <a href  ng-click="onclickUsers()">Users</a>
+            </li>
+            <li ng-class="{ active:isSet(6) }">
+                <a href  ng-click="onclickHelp()">Help</a>
+            </li>
+            <li ng-class="{ active:isSet(7) }">
+                <a href  ng-click="onclickAbout()">About</a>
+            </li>
+        </ul>
+    </div >
+    <div ui-view="moduleContent">
+
+    </div>
+
+</div>

@@ -1,0 +1,51 @@
+<div class="well">
+    <div class="row">
+        <button class="btn btn-success col-lg-1" ng-click="fetchAllUsers()"><i class="glyphicon glyphicon-refresh"> </i>Refresh</button>
+        <a ui-sref="user.new" class="btn btn-success col-lg-1 pull-right"><i class="glyphicon glyphicon-plus"> </i>New</a>
+    </div><br/>
+    <div class="row">
+        <label class="col-lg-1">Research:&nbsp; &nbsp;</label> 
+        &nbsp;<input type="text" class="col-lg-2 "/>
+    </div>
+    <table class="table table-striped table-bordered table-responsive table-condensed">
+        <b><center>Users Table</center></b>
+        <thead class="popover-content">
+            <tr>
+                <th class="text-center">Matricule</th>
+                <th class="text-center">FirstName</th>
+                <th class="text-center">LastName</th>
+                <th class="text-center">Sexe</th>
+                <th class="text-center">Post</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in vm.users">
+                <td class="text-center">{{item.matricule}}</td>
+                <td class="text-center">{{item.firstName}}</td>
+                <td class="text-center">{{item.lastName}}</td>
+                <td class="text-center">{{item.sexe}}</td>
+                <td class="text-center">{{item.poste}}</td>
+                <td class="text-center">
+                    <button  class="btn btn-xs btn-primary btn-danger" ui-sref="user.delete({id:item.id})"> <i  class="glyphicon glyphicon-trash"></i>
+                        Delete
+                    </button>
+                    <button  class="btn btn-xs btn-info" ui-sref="user.edit({id:item.id})"><i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </button>
+                    <button  class="btn btn-xs btn-warning" ui-sref="user.detail({id:item.id})"><i class="glyphicon glyphicon-print"></i>
+                        detail
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li><a href="#" class="btn btn-info"><<</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li ><a href="#" class="btn btn-info">>></a></li>
+    </ul>
+</div>
+
