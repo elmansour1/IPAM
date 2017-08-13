@@ -3,33 +3,33 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myClientLabel">Edit a Author</h4>
+        <h4 class="modal-title" id="myClientLabel">Edit a Administrateur</h4>
     </div>
     <div class="modal-body">
-        <div class="form-group" ng-show="vm.auteur.id">
+        <div class="form-group" ng-show="vm.administrateur.id">
             <label for="id">ID</label>
             <input type="textr" class="form-control" id="id" name="id"
-                   ng-model="vm.auteur.id" readonly />
+                   ng-model="vm.administrateur.id" readonly />
         </div>
         <div class="form-group" >
-            <label class="control-label" for="field_name">Nom : </label>
-            <input type="text" class="form-control" name="nom" id="field_name"
-                   ng-model="vm.auteur.nom"
-                   />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_birthDay">Matricule :</label>
-            <input type="text" class="form-control" name="age" id="field_birthDay"
-                   ng-model="vm.auteur.matricule"
+            <label class="control-label" for="name">Nom : </label>
+            <input type="text" class="form-control" name="name" id="name"
+                   ng-model="vm.administrateur.name"
                    />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_email">Email :</label>
             <div>
                <input type="email" class="form-control" name="age" id="field_email"
-                   ng-model="vm.auteur.email"
+                   ng-model="vm.administrateur.email"
                    />
             </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="password">Password :</label>
+            <input type="password" class="form-control" name="password" id="password"
+                   ng-model="vm.administrateur.password"
+                   />
         </div>
     </div>
     <div class="modal-footer">

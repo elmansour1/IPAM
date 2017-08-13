@@ -6,26 +6,26 @@
         <h4 class="modal-title" id="myClientLabel">Edit a Building</h4>
     </div>
     <div class="modal-body">
-        <div class="form-group" ng-show="vm.user.id">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                   ng-model="vm.user.id" readonly />
+        <div class="form-group" ng-show="vm.user.matricule">
+            <label for="matricule">Matricule</label>
+            <input type="text" class="form-control" id="matricule" name="matricule"
+                   ng-model="vm.user.matricule" readonly />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_name">FirstName : </label>
-            <input type="text" class="form-control" name="name" id="field_name"
+            <input type="text" class="form-control" name="first_name" id="field_name"
                    ng-model="vm.user.firstName"
                    />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_name">LastName : </label>
-            <input type="text" class="form-control" name="name" id="field_name"
+            <input type="text" class="form-control" name="lastName" id="field_name"
                    ng-model="vm.user.lastName"
                    />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_name">Sexe : </label>
-            <select type="text" class="form-control" name="name" id="field_name"
+            <select type="text" class="form-control" name="sexe" id="field_name"
                    ng-model="vm.user.sexe">
                 <option>Feminin</option>
                 <option>Masculin</option>
@@ -33,8 +33,8 @@
         </div>  
         <div class="form-group">
             <label class="control-label" for="field_name">Post : </label>
-            <input type="text" class="form-control" name="name" id="field_name"
-                   ng-model="vm.user.post"
+            <input type="text" class="form-control" name="poste" id="field_name"
+                   ng-model="vm.user.poste"
                    />
         </div>
     </div>

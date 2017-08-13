@@ -9,110 +9,112 @@
 
     function stateConfig ($stateProvider) {
         $stateProvider
-                .state('batiment', {
+                .state('equipement', {
                     parent: 'module',
-                    url: '/batiments',
+                    url: '/equipements',
                     views: {
                         'moduleContent@app': {
-                            templateUrl: 'modules/building/views/listOfBuilding.html',
-                            controller: 'BuildingController',
+                            templateUrl: 'modules/equipement/views/listOfEquipement.html',
+                            controller: 'EquipementController',
                             controllerAs: 'vm',
                             size: 'lg'
                         }
                     }
                 })
-                .state('batiment.detail', {
-                    parent: 'batiment',
-                    url: '/batiment/{id}',
+                .state('equipement.detail', {
+                    parent: 'equipement',
+                    url: '/equipement/{id}',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
-                                templateUrl: 'modules/building/views/detail.building.html',
-                                controller: 'BuildingDialogController',
+                                templateUrl: 'modules/equipement/views/detail.equipement.html',
+                                controller: 'EquipementDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
                                 size: 'sm',
                                 resolve: {
-                                    entity: ['Building', function (Building) {
+                                    entity: ['Equipement', function (Equipement) {
                                             console.log("valeur de id" + $stateParams.id);
-                                            return Building.get({id: $stateParams.id}).$promise;
+                                            return Equipement.get({id: $stateParams.id}).$promise;
                                         }]
                                 }
                             })
                                     .result.then(function () {
-                                        $state.go('batiment', null, {reload: true});
+                                        $state.go('equipement', null, {reload: true});
                                     }, function () {
-                                        $state.go('batiment');
+                                        $state.go('equipement');
                                     });
                         }]
                 })
-                .state('batiment.new', {
-                    parent: 'batiment',
+                .state('equipement.new', {
+                    parent: 'equipement',
                     url: '/new',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
-                                templateUrl: 'modules/building/views/createBuilding.html',
-                                controller: 'BuildingDialogController',
+                                templateUrl: 'modules/equipement/views/createEquipement.html',
+                                controller: 'EquipementDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
                                 size: 'sm',
                                 resolve: {
                                     entity: function () {
                                         return {
-                                            position: null,
-                                            name: null,
+                                            marque: null,
+                                            description:null,
+                                            users: null,
+                                            reseau:null,
                                             id: null
                                         };
                                     }
                                 }
                             }).result.then(function () {
-                                $state.go('batiment', null, {reload: true});
+                                $state.go('equipement', null, {reload: true});
                             }, function () {
-                                $state.go('batiment');
+                                $state.go('equipement');
                             });
                         }]
                 })
-                .state('batiment.edit', {
-                    parent: 'batiment',
+                .state('equipement.edit', {
+                    parent: 'equipement',
                     url: '/{id}/edit',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
-                                templateUrl: 'modules/building/views/updateBuilding.html',
-                                controller: 'BuildingDialogController',
+                                templateUrl: 'modules/equipement/views/updateEquipement.html',
+                                controller: 'EquipementDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
                                 size: 'sm',
                                 resolve: {
-                                    entity: ['Building', function (Building) {
+                                    entity: ['Equipement', function (Equipement) {
                                         console.log("valeur de id" + $stateParams.id);
-                                            return Building.get({id: $stateParams.id}).$promise;
+                                            return Equipement.get({id: $stateParams.id}).$promise;
                                         }]
                                 }
                             }).result.then(function () {
-                                $state.go('batiment', null, {reload: true});
+                                $state.go('equipement', null, {reload: true});
                             }, function () {
                                 $state.go('^');
                             });
                         }]
                 })
-                .state('batiment.delete', {
-                    parent: 'batiment',
+                .state('equipement.delete', {
+                    parent: 'equipement',
                     url: '/delete/{id}',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
-                                templateUrl: 'modules/building/views/deleteBuilding.html',
-                                controller: 'BuildingDeleteController',
+                                templateUrl: 'modules/equipement/views/deleteEquipement.html',
+                                controller: 'EquipementDeleteController',
                                 controllerAs: 'vm',
                                 size: 'sm',
                                 resolve: {
-                                  entity: ['Building', function (Building) {
+                                  entity: ['Equipement', function (Equipement) {
                                           console.log("valeur de id peut etre ..." + $stateParams.id);
-                                          return Building.get({id: $stateParams.id}).$promise;
+                                          return Equipement.get({id: $stateParams.id}).$promise;
                                       }]
                                 }
                             }).result.then(function () {
-                                $state.go('batiment', null, {reload: true});
+                                $state.go('equipement', null, {reload: true});
                             }, function () {
-                                $state.go('^');
+                                $state.go('equipement');
                             });
                         }]
                 });

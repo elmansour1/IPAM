@@ -1,25 +1,34 @@
 <div class="" >
     <div >
         <ul class="nav nav-header nav-pills">
+            <li ng-class="{ active:isSet(0) }">
+                <a href  ng-click="onclickHome()">Home Admin</a>
+            </li>
             <li ng-class="{ active:isSet(1) }">
-                <a href  ng-click="onclickNetwork()">Network</a>
+                <a href  ng-click="onclickNetwork()">Networks</a>
             </li>
             <li ng-class="{ active:isSet(2) }">
-                <a href  ng-click="onclickBuilding()">Building</a>
+                <a href  ng-click="onclickBuilding()">Buildings</a>
             </li>
             <li ng-class="{ active:isSet(3) }">
-                <a href  ng-click="onclickSubnet()">Subnet</a>
+                <a href  ng-click="onclickSubnet()">Subnets</a>
             </li>
             <li ng-class="{ active:isSet(4) }">
-                <a href  ng-click="onclickVlan()">Vlan</a>
+                <a href  ng-click="onclickVlan()">Vlans</a>
             </li>
             <li ng-class="{ active:isSet(5) }">
-                <a href  ng-click="onclickUsers()">Users</a>
+                <a href  ng-click="onclickUsers()">Employes</a>
             </li>
             <li ng-class="{ active:isSet(6) }">
-                <a href  ng-click="onclickHelp()">Help</a>
+                <a href  ng-click="onclickEquipement()">Equipements</a>
             </li>
             <li ng-class="{ active:isSet(7) }">
+                <a href  ng-click="onclickHelp()">Help</a>
+            </li>
+            <li ng-class="{ active:isSet(8) }">
+                <a href  ng-click="onclickAdministrateur()">Administrateur</a>
+            </li>
+            <li ng-class="{ active:isSet(9) }">
                 <a href  ng-click="onclickAbout()">About</a>
             </li>
         </ul>

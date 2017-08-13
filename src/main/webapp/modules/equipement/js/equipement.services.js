@@ -3,12 +3,12 @@
     'use strict';
     angular
         .module('ipam')
-        .factory('Building', BuildingFonction);
+        .factory('Equipement', EquipementFonction);
 
-    BuildingFonction.$inject = ['$resource'];
+    EquipementFonction.$inject = ['$resource'];
 
-    function BuildingFonction ($resource) {
-        var resourceUrl =  'api/batiments/:id';
+    function EquipementFonction ($resource) {
+        var resourceUrl =  'api/equipements/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

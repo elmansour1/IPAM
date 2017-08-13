@@ -2,13 +2,13 @@
 (function() {
     'use strict';
     angular
-        .module('memoire')
-        .factory('Auteur', AuteurFonction);
+        .module('ipam')
+        .factory('Administrateur', AdministrateurFonction);
 
-    AuteurFonction.$inject = ['$resource'];
+    AdministrateurFonction.$inject = ['$resource'];
 
-    function AuteurFonction ($resource) {
-        var resourceUrl =  'api/auteurs/:id';
+    function AdministrateurFonction ($resource) {
+        var resourceUrl =  'api/administrateurs/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

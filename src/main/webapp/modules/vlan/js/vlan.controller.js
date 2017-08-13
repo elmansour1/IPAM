@@ -50,7 +50,7 @@
         });
 
         function clear () {
-        console.log("mon id est ..."+vm.batiment.id);
+        console.log("mon id est ..."+vm.vlan.id);
             $uibModalInstance.dismiss('cancel');
         }
 

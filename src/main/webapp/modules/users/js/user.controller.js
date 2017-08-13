@@ -41,7 +41,7 @@
 
     var vm = this;
 
-        vm.batiment = entity;
+        vm.user = entity;
         vm.clear =clear;
         vm.save = save;
 
@@ -50,17 +50,17 @@
         });
 
         function clear () {
-        console.log("mon id est ..."+vm.user.id);
+        console.log("mon matricule est ..."+vm.user.matricule);
             $uibModalInstance.dismiss('cancel');
         }
 
         function save () {
             vm.isSaving = true;
-            if (vm.user.id !== null) {
-               console.log("vm.user.id = "+vm.user.id+" vm.user.nom = "+vm.user.nom);
-               Building.update({id : vm.user.id} ,vm.user, onSaveSuccess, onSaveError);
+            if (vm.user.matricule !== null) {
+               console.log("vm.user.matricule = "+vm.user.matricule+" vm.user.firstName = "+vm.user.firstName);
+               User.update({matricule : vm.user.matricule} ,vm.user, onSaveSuccess, onSaveError);
             } else {
-                Building.save(vm.user, onSaveSuccess, onSaveError);
+                User.save(vm.user, onSaveSuccess, onSaveError);
             }
         }
 
@@ -90,8 +90,8 @@
             $uibModalInstance.dismiss('cancel');
         }
 
-        function confirmDelete (id) {
-              User.delete({id: id},
+        function confirmDelete (matricule) {
+              User.delete({matricule: matricule},
                 function () {
                     $uibModalInstance.close(true);
                 });

@@ -57,7 +57,7 @@
         function save () {
             vm.isSaving = true;
             if (vm.batiment.id !== null) {
-               console.log("vm.batiment.id = "+vm.batiment.id+" vm.batiment.nom = "+vm.batiment.nom);
+               console.log("vm.batiment.id = "+vm.batiment.id+" vm.batiment.localite = "+vm.batiment.localite+" vm.batiment.nom = "+vm.batiment.nom);
                Building.update({id : vm.batiment.id} ,vm.batiment, onSaveSuccess, onSaveError);
             } else {
                 Building.save(vm.batiment, onSaveSuccess, onSaveError);

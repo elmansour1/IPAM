@@ -21,6 +21,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 
 /**
  *
@@ -29,14 +32,23 @@ import org.springframework.context.annotation.Bean;
  */
 @SpringBootApplication
 public class App {
-     private static final Logger log = LoggerFactory.getLogger(App.class);
-     
-     @Autowired
-     private IBatiment ibat;
-     @Autowired
-       private IReseau iReseau; 
-     @Autowired
-     private IVlan iVlan;
+//     private static final Logger log = LoggerFactory.getLogger(App.class);
+//     
+//     @Autowired
+//     private IBatiment ibat;
+//     @Autowired
+//       private IReseau iReseau; 
+//     @Autowired
+//     private IVlan iVlan;
+    @Configuration
+    static class SecurityConfig extends GlobalAuthenticationConfigurerAdapter{
+        
+        public void init(AuthenticationManagerBuilder auth) throws Exception{
+            auth.inMemoryAuthentication()
+                    .withUser("user").password("user").roles("USER").and()
+                    .withUser("admin").password("admin").roles("ADMIN","USER");
+        }
+    }
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
         

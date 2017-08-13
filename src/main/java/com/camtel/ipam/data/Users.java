@@ -25,20 +25,20 @@ public class Users implements Serializable{
     @Id
     private String matricule;
     
-    @Column(nullable = false)
+    @Column
     private String firstName;
     
-    @Column(nullable = false)
+    @Column
     private String lastName;
     
-    @Column(nullable = false)
+    @Column
     private Sexe sexe;
     
-    @Column(nullable = false)
+    @Column
     private String poste;
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Vlan> listOfVlan;
+    @OneToMany(mappedBy = "users", cascade = {CascadeType.MERGE})
+    private List<Equipement> equipement;
 
     public Users(String matricule, String firstName, String lastName, Sexe sexe, String poste) {
         this.matricule = matricule;
@@ -71,10 +71,6 @@ public class Users implements Serializable{
         this.poste = poste;
     }
 
-    public void setListOfVlan(List<Vlan> listOfVlan) {
-        this.listOfVlan = listOfVlan;
-    }
-
     public String getMatricule() {
         return matricule;
     }
@@ -95,12 +91,14 @@ public class Users implements Serializable{
         return poste;
     }
 
-    public List<Vlan> getListOfVlan() {
-        return listOfVlan;
+    public List<Equipement> getEquipement() {
+        return equipement;
+    }
+
+    public void setEquipement(List<Equipement> equipement) {
+        this.equipement = equipement;
     }
     
-    
-
     @Override
     public String toString() {
         return "User{" + "matricule=" + matricule + ", firstName=" + firstName + ", lastName=" + lastName + ", sexe=" + sexe + ", poste=" + poste + '}';

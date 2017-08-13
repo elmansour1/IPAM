@@ -5,14 +5,13 @@
  */
 package com.camtel.ipam.dao;
 
-import com.camtel.ipam.data.Batiment;
+import com.camtel.ipam.data.Administrateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author faouzi el mansour <faouzielmansour@yahoo.com>
  */
-public interface IBatiment extends JpaRepository<Batiment, Long>{
-    public Batiment findBatimentByLocalite(String localite);
-    public Batiment findByNameAndPosition(String name, String position);
+public interface IAdministrateur extends JpaRepository<Administrateur, Long>{
+    
 }

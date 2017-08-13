@@ -8,7 +8,6 @@ package com.camtel.ipam.services;
 import com.camtel.ipam.data.Batiment;
 import java.util.List;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 /**
  *
@@ -20,7 +19,7 @@ public interface IBatimentService {
     public void deleteBatimemt(Long id);
     public Batiment findByNameAndPosition(String name, String position);
     public Batiment findbatimentById(Long id);
-
-    public Page<Batiment> getAllBatiment(PageRequest pageRequest);
+    public Batiment findBatimentByLocalite(String localite);
+    public Page<Batiment> listeBatitement(Long idBatimnet, int page, int zise );
     
 }

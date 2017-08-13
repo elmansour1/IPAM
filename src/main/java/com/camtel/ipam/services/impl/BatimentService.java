@@ -13,7 +13,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -51,20 +50,15 @@ public class BatimentService implements IBatimentService{
     public Batiment findbatimentById(Long id) {
         return iBatiment.findOne(id);
     }
-    
-    public Page<Batiment> listBuilding(int page, int size){
-        return iBatiment.findAll(new PageRequest(page, size));
-    }
-
-//    @Override
-//    public Page<Batiment> getAllBatiment(PageRequest pageRequest) {
-//                return iBatiment.findAll(new PageRequest(page, size));
-//  
-//    }
 
     @Override
-    public Page<Batiment> getAllBatiment(PageRequest pageRequest) {
+    public Page<Batiment> listeBatitement(Long idBatimnet, int page, int zise) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Batiment findBatimentByLocalite(String localite) {
+        return iBatiment.findBatimentByLocalite(localite);
     }
 
 }

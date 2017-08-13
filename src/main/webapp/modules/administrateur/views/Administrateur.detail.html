@@ -3,37 +3,24 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myClientLabel"> Detail Author</h4>
+        <h4 class="modal-title" id="myClientLabel"> Detail Administrateur</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.author.id">
+        <div class="form-group" ng-show="vm.administrateur.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                   ng-model="vm.auteur.id" readonly />
+                   ng-model="vm.administrateur.id" readonly />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_lastName">Nom : </label>
-            <input type="text" class="form-control" name="lastName" id="field_lastName"
-                   ng-model="vm.auteur.nom"  readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_matricule">Matricule :</label>
-            <input type="text" class="form-control" name="firstName" id="field_matricule"
-                   ng-model="vm.auteur.matricule"
-                   readonly/>
+            <input type="text" class="form-control" name="name" id="field_lastName"
+                   ng-model="vm.administrateur.name"  readonly />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_email">Email :</label>
-            <div>
-                <label class="control-label" id="field_email"> {{vm.auteur.email}} </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_telephone">Telephone :</label>
-            <div>
-                <label class="control-label" id="field_telephone"> {{vm.auteur.telephone}} </label>
-            </div>
+            <input type="text" class="form-control" name="email" id="field_email" 
+                    ng-model="vm.administrateur.email" readonly />
         </div>
     </div>
     <div class="modal-footer">

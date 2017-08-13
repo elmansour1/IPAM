@@ -1,4 +1,4 @@
-<div class="well">
+<div class="well tabAnim">
     <div class="row">
         <button class="btn btn-success col-lg-1" ng-click="fetchAllNetworks()"><i class="glyphicon glyphicon-refresh"> </i>Refresh</button>
         <a ui-sref="network.new" class="btn btn-success col-lg-1 pull-right"><i class="glyphicon glyphicon-plus"> </i>New</a>
@@ -10,14 +10,15 @@
     <table class="table table-striped table-bordered table-responsive table-condensed">
         <b><center>Network Table</center></b>
         <thead class="popover-content">
-            <tr>
-                <th class="text-center">#</th>
+            <tr class="panel-heading btn-primary">
                 <th class="text-center">Adress</th>
                 <th class="text-center">Description</th>
                 <th class="text-center">Vlan</th>
                 <th class="text-center">Mask</th>
                 <th class="text-center">Gateway</th>
-                <th></th>
+                <th class="text-center">Delete</th>
+                <th class="text-center">Edit</th>
+                <th class="text-center">Detail</th>
             </tr>
         </thead>
         <tbody>
@@ -32,9 +33,13 @@
                     <button  class="btn btn-xs btn-primary btn-danger" ui-sref="network.delete({id:item.id})"> <i  class="glyphicon glyphicon-trash"></i>
                         Delete
                     </button>
+                </td>
+                <td class="text-center">
                     <button  class="btn btn-xs btn-info" ui-sref="network.edit({id:item.id})"><i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </button>
+                </td>
+                <td class="text-center">
                     <button  class="btn btn-xs btn-warning" ui-sref="network.detail({id:item.id})"><i class="glyphicon glyphicon-print"></i>
                         detail
                     </button>
@@ -42,12 +47,5 @@
             </tr>
         </tbody>
     </table>
-    <ul class="pagination">
-        <li><a href="#" class="btn btn-info"><<</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li ><a href="#" class="btn btn-info">>></a></li>
-    </ul>
 </div>
 

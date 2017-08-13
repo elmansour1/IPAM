@@ -2,17 +2,17 @@
     'use strict';
 
     angular
-            .module('memoire')
-            .controller('AuteurController', AuteurController)
-            .controller('AuteurDialogController', AuteurDialogController)
-            .controller('AuteurDeleteController', AuteurDeleteController);
+            .module('ipam')
+            .controller('AdministrateurController', AdministrateurController)
+            .controller('AdministrateurDialogController', AdministrateurDialogController)
+            .controller('AdministrateurDeleteController', AdministrateurDeleteController);
 
 
-    //============  Generale Author Controller  ======================//
+    //============  Generale Administrateur Controller  ======================//
 
-    AuteurController.$inject = [ 'Auteur'];
+    AdministrateurController.$inject = [ 'Administrateur'];
 
-    function AuteurController(Auteur) {
+    function AdministrateurController(Administrateur) {
         var vm = this;
         vm.loadAll = loadAll;
 
@@ -20,10 +20,10 @@
 
         function loadAll() {
 
-            Auteur.query(null, onSuccess, onError);
+            Administrateur.query(null, onSuccess, onError);
 
             function onSuccess(data, headers) {
-                vm.auteurs = data;
+                vm.administrateurs = data;
                 //console.log('je suis ...'+data[0]._id);
             }
             function onError(error) {
@@ -33,15 +33,15 @@
 
     };
 
-    //============  Author dialog controller ====================//
+    //============  Administrateur dialog controller ====================//
 
-    AuteurDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Auteur'];
+    AdministrateurDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Administrateur'];
 
-    function AuteurDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Auteur) {
+    function AdministrateurDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Administrateur) {
 
     var vm = this;
 
-        vm.auteur = entity;
+        vm.administrateur = entity;
         vm.clear =clear;
         vm.save = save;
 
@@ -50,22 +50,22 @@
         });
 
         function clear () {
-        console.log("mon non est ..."+vm.auteur.id);
+        console.log("mon id est ..."+vm.administrateur.id);
             $uibModalInstance.dismiss('cancel');
         }
 
         function save () {
             vm.isSaving = true;
-            if (vm.auteur.id !== null) {
-               console.log("vm.auteur.id = "+vm.auteur.id+" vm.auteur.nom = "+vm.auteur.nom);
-               Auteur.update({id : vm.auteur.id} ,vm.auteur, onSaveSuccess, onSaveError);
+            if (vm.administrateur.id !== null) {
+               console.log("vm.administrateur.id = "+vm.administrateur.id+" vm.administrateur.name = "+vm.administrateur.name);
+               Administrateur.update({id : vm.administrateur.id} ,vm.administrateur, onSaveSuccess, onSaveError);
             } else {
-                Auteur.save(vm.auteur, onSaveSuccess, onSaveError);
+                Administrateur.save(vm.administrateur, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('memoire :auteurUpdate', result);
+            $scope.$emit('memoire :administrateurUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
@@ -75,14 +75,14 @@
         }
     };
 
-    //============  Author delete controller ====================//
+    //============  Administrateur delete controller ====================//
 
-    AuteurDeleteController.$inject = ['$uibModalInstance', 'Auteur','entity'];
+    AdministrateurDeleteController.$inject = ['$uibModalInstance', 'Administrateur','entity'];
 
-    function   AuteurDeleteController($uibModalInstance,Auteur,entity) {
+    function   AdministrateurDeleteController($uibModalInstance,Administrateur,entity) {
          var vm = this;
 
-        vm.auteur = entity;
+        vm.administrateur = entity;
         vm.clear = clear;
         vm.confirmDelete = confirmDelete;
 
@@ -91,7 +91,7 @@
         }
 
         function confirmDelete (id) {
-              Auteur.delete({id: id},
+              Administrateur.delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

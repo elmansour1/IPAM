@@ -23,7 +23,7 @@
                 })
                 .state('user.detail', {
                     parent: 'user',
-                    url: '/user/{id}',
+                    url: '/user/{matricule}',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
                                 templateUrl: 'modules/users/views/detail.user.html',
@@ -33,8 +33,8 @@
                                 size: 'sm',
                                 resolve: {
                                     entity: ['User', function (User) {
-                                            console.log("valeur de id" + $stateParams.id);
-                                            return User.get({id: $stateParams.id}).$promise;
+                                            console.log("valeur de matricule" + $stateParams.matricule);
+                                            return User.get({matricule: $stateParams.matricule}).$promise;
                                         }]
                                 }
                             })
@@ -59,24 +59,23 @@
                                     entity: function () {
                                         return {
                                             matricule: null,
-                                            firstName: null,
-                                            lastName: null,
-                                            sexe: null,
+                                            first_name: null,
+                                            last_name: null,
                                             poste:null,
-                                            id: null
+                                            sexe: null
                                         };
                                     }
                                 }
                             }).result.then(function () {
                                 $state.go('user', null, {reload: true});
                             }, function () {
-                                $state.go('user');
+                                $state.go('^');
                             });
                         }]
                 })
                 .state('user.edit', {
                     parent: 'user',
-                    url: '/{id}/edit',
+                    url: '/{matricule}/edit',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
                                 templateUrl: 'modules/users/views/updateUser.html',
@@ -86,8 +85,8 @@
                                 size: 'sm',
                                 resolve: {
                                     entity: ['User', function (User) {
-                                        console.log("valeur de id" + $stateParams.id);
-                                            return User.get({id: $stateParams.id}).$promise;
+                                        console.log("valeur de matricule" + $stateParams.matricule);
+                                            return User.get({matricule: $stateParams.matricule}).$promise;
                                         }]
                                 }
                             }).result.then(function () {
@@ -99,7 +98,7 @@
                 })
                 .state('user.delete', {
                     parent: 'user',
-                    url: '/delete/{id}',
+                    url: '/delete/{matricule}',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
                                 templateUrl: 'modules/users/views/deleteUser.html',
@@ -108,8 +107,8 @@
                                 size: 'sm',
                                 resolve: {
                                   entity: ['User', function (User) {
-                                          console.log("valeur de id peut etre ..." + $stateParams.id);
-                                          return User.get({id: $stateParams.id}).$promise;
+                                          console.log("valeur de matricule" + $stateParams.matricule);
+                                            return User.get({matricule: $stateParams.matricule}).$promise;
                                       }]
                                 }
                             }).result.then(function () {

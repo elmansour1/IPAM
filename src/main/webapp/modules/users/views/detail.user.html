@@ -7,35 +7,35 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.user.id">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                   ng-model="vm.user.id" readonly />
+        <div class="form-group" ng-show="vm.user.matricule">
+            <label for="matricule">Matricule</label>
+            <input type="text" class="form-control" id="matricule" name="matricule"
+                   ng-model="vm.user.matricule" readonly />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_name">FirstName : </label>
-            <input type="text" class="form-control" name="name" id="field_name"
+            <input type="text" class="form-control" name="first_name" id="field_name"
                    ng-model="vm.user.firstName"
-                   />
+                    readonly/>
         </div>
         <div class="form-group">
             <label class="control-label" for="field_name">LastName : </label>
-            <input type="text" class="form-control" name="name" id="field_name"
-                   ng-model="vm.user.lastName"
+            <input type="text" class="form-control" name="last_name" id="field_name"
+                   ng-model="vm.user.lastName" readonly
                    />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_name">Sexe : </label>
-            <select type="text" class="form-control" name="name" id="field_name"
-                   ng-model="vm.user.sexe">
+            <select type="text" class="form-control" name="sexe" id="field_name"
+                   ng-model="vm.user.sexe" readonly>
                 <option>Feminin</option>
                 <option>Masculin</option>
             </select>
         </div>  
         <div class="form-group">
             <label class="control-label" for="field_name">Post : </label>
-            <input type="text" class="form-control" name="name" id="field_name"
-                   ng-model="vm.user.post"
+            <input type="text" class="form-control" name="poste" id="field_name"
+                   ng-model="vm.user.poste" readonly
                    />
         </div>
     </div>

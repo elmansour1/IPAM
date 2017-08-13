@@ -45,7 +45,7 @@ public class UsersResource {
      * or with status 400 (Bad Request) if the user has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/user",
+    @RequestMapping(value = "/users",
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Users> createUsers(@RequestBody Users user) throws URISyntaxException {
@@ -119,13 +119,13 @@ public class UsersResource {
      * @param matricule the id of the reseau to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @RequestMapping(value = "/users/{id}",
+    @RequestMapping(value = "/users/{matricule}",
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteUsrs(@PathVariable String matricule) {
         log.debug("REST request to delete user : {}", matricule);
         usersService.deleteUsers(matricule);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("user", matricule.toString())).build();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("user", matricule)).build();
     }
 
 

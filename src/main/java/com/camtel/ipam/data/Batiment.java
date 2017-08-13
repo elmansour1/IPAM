@@ -28,16 +28,22 @@ public class Batiment implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     @Column(nullable = false)
     private String name;
+    
+    @Column
+    private String localite;
+    
     @Column(nullable = false)
     private String position;
     
     @OneToMany(mappedBy = "batiment", cascade = CascadeType.ALL)
     private List<Vlan> listOfVlan;
 
-    public Batiment(String name, String position) {
+    public Batiment(String name, String localite, String position) {
         this.name = name;
+        this.localite = localite;
         this.position = position;
     }
 
@@ -62,6 +68,14 @@ public class Batiment implements Serializable{
         this.name = name;
     }
 
+    public String getLocalite() {
+        return localite;
+    }
+
+    public void setLocalite(String localite) {
+        this.localite = localite;
+    }
+    
     public String getPosition() {
         return position;
     }
@@ -78,26 +92,22 @@ public class Batiment implements Serializable{
         this.listOfVlan = listOfVlan;
     }
 
-    
-
     @Override
     public String toString() {
-        return "Batiment{" + "name=" + name + ", position=" + position + '}';
+        return "Batiment{" + "name=" + name + ", localite=" + localite + ", position=" + position + ", listOfVlan=" + listOfVlan + '}';
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.name);
-        hash = 29 * hash + Objects.hashCode(this.position);
+        hash = 53 * hash + Objects.hashCode(this.name);
+        hash = 53 * hash + Objects.hashCode(this.localite);
+        hash = 53 * hash + Objects.hashCode(this.position);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -108,6 +118,9 @@ public class Batiment implements Serializable{
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
+        if (!Objects.equals(this.localite, other.localite)) {
+            return false;
+        }
         if (!Objects.equals(this.position, other.position)) {
             return false;
         }
@@ -115,5 +128,4 @@ public class Batiment implements Serializable{
     }
     
     
-
 }

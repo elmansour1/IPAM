@@ -8,8 +8,10 @@ package com.camtel.ipam.data;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,36 +32,29 @@ public class Vlan implements Serializable{
     @Column
     private int number;
     
-    @Column(nullable = false)
+    @Column
     private String name;
     
-    @ManyToOne
-    @JoinColumn(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(insertable = true)
     private Batiment batiment;
     
-    @ManyToOne
-    @JoinColumn(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(insertable = true)
     private Reseau reseau;
     
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Users user;
-
-    public Vlan(int number, String name, Batiment batiment, Reseau reseau, Users user) {
+    public Vlan(int number, String name, Batiment batiment, Reseau reseau) {
         this.number = number;
         this.name = name;
         this.batiment = batiment;
         this.reseau = reseau;
-        this.user = user;
+        
     }
 
     public Vlan(int number, String name) {
         this.number = number;
         this.name = name;
     }
-
-    
-    
 
     public Vlan() {
     }
@@ -106,16 +101,6 @@ public class Vlan implements Serializable{
         this.reseau = reseau;
     }
 
-    public Users getUser() {
-        return user;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
-    }
-    
-    
-
     @Override
     public String toString() {
         return "Vlan{" + "number=" + number + ", name=" + name + ", batiment=" + batiment + ", reseau=" + reseau + '}';
@@ -152,10 +137,7 @@ public class Vlan implements Serializable{
         if (!Objects.equals(this.batiment, other.batiment)) {
             return false;
         }
-        if (!Objects.equals(this.reseau, other.reseau)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.reseau, other.reseau);
     }
     
     

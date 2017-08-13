@@ -5,20 +5,17 @@
  */
 package com.camtel.ipam.services;
 
-import com.camtel.ipam.data.Reseau;
+import com.camtel.ipam.data.Equipement;
 import java.util.List;
 
 /**
  *
  * @author faouzi el mansour <faouzielmansour@yahoo.com>
  */
-public interface IReseauService {
-    public Reseau createOrUpdateReseau(Reseau reseau);
-    public List<Reseau> getAllNetwork();
-    public void deleteNetwork(Long id);
-    public Reseau findNetworkById(Long id);
-   // public boolean validateIp(String ip);
-    
-    
+public interface IEquipementService {
+    public Equipement createOrUpdateEquipement(Equipement equipement);
+    public Equipement findEquipementById(Long id);
+    public List<Equipement> findAllEquipement();
+    public void deleteEquipement(Long id);
     
 }

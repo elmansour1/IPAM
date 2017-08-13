@@ -3,16 +3,16 @@
 
     angular
             .module('ipam')
-            .controller('BuildingController', BuildingController)
-            .controller('BuildingDialogController', BuildingDialogController)
-            .controller('BuildingDeleteController', BuildingDeleteController);
+            .controller('EquipementController', EquipementController)
+            .controller('EquipementDialogController', EquipementDialogController)
+            .controller('EquipementDeleteController', EquipementDeleteController);
 
 
-    //============  Generale Building Controller  ======================//
+    //============  Generale Equipement Controller  ======================//
 
-    BuildingController.$inject = [ 'Building'];
+    EquipementController.$inject = [ 'Equipement'];
 
-    function BuildingController(Building) {
+    function EquipementController(Equipement) {
         var vm = this;
         vm.loadAll = loadAll;
 
@@ -20,11 +20,10 @@
 
         function loadAll() {
 
-            Building.query(null, onSuccess, onError);
+            Equipement.query(null, onSuccess, onError);
 
             function onSuccess(data, headers) {
-                vm.batiments = data;
-                //console.log('je suis ...'+data[0]._id);
+                vm.equipements = data;
             }
             function onError(error) {
                 Console.log(error.data.message);
@@ -33,15 +32,15 @@
 
     };
 
-    //============  Building dialog controller ====================//
+    //============  Equipement dialog controller ====================//
 
-    BuildingDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Building'];
+    EquipementDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Equipement'];
 
-    function BuildingDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Building) {
+    function EquipementDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Equipement) {
 
     var vm = this;
 
-        vm.batiment = entity;
+        vm.equipement = entity;
         vm.clear =clear;
         vm.save = save;
 
@@ -50,22 +49,22 @@
         });
 
         function clear () {
-        console.log("mon id est ..."+vm.batiment.id);
+        console.log("mon id est ..."+vm.equipement.id);
             $uibModalInstance.dismiss('cancel');
         }
 
         function save () {
             vm.isSaving = true;
-            if (vm.batiment.id !== null) {
-               console.log("vm.batiment.id = "+vm.batiment.id+" vm.batiment.nom = "+vm.batiment.nom);
-               Building.update({id : vm.batiment.id} ,vm.batiment, onSaveSuccess, onSaveError);
+            if (vm.equipement.id !== null) {
+               console.log("vm.equipement.id = "+vm.equipement.id+" vm.equipement.description = "+vm.equipement.description+" vm.equipement.marque = "+vm.equipement.marque);
+               Equipement.update({id : vm.equipement.id} ,vm.equipement, onSaveSuccess, onSaveError);
             } else {
-                Building.save(vm.batiment, onSaveSuccess, onSaveError);
+                Equipement.save(vm.equipement, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('ipam : batimentUpdate', result);
+            $scope.$emit('ipam : equipementUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
@@ -75,14 +74,14 @@
         }
     };
 
-    //============  Building delete controller ====================//
+    //============  Equipement delete controller ====================//
 
-    BuildingDeleteController.$inject = ['$uibModalInstance', 'Building','entity'];
+    EquipementDeleteController.$inject = ['$uibModalInstance', 'Equipement','entity'];
 
-    function   BuildingDeleteController($uibModalInstance,Building,entity) {
+    function   EquipementDeleteController($uibModalInstance,Equipement,entity) {
          var vm = this;
 
-        vm.batiment = entity;
+        vm.equipement = entity;
         vm.clear = clear;
         vm.confirmDelete = confirmDelete;
 
@@ -91,7 +90,7 @@
         }
 
         function confirmDelete (id) {
-              Building.delete({id: id},
+              Equipement.delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

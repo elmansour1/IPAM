@@ -2,116 +2,115 @@
     'use strict';
 
     angular
-            .module('memoire')
+            .module('ipam')
             .config(stateConfig);
 
     stateConfig.$inject = ['$stateProvider'];
 
     function stateConfig ($stateProvider) {
         $stateProvider
-                .state('auteur', {
+                .state('administrateur', {
                     parent: 'module',
-                    url: '/auteurs',
+                    url: '/administrateurs',
                     views: {
                         'moduleContent@app': {
-                            templateUrl: 'modules/authors/views/auteurs.list.html',
-                            controller: 'AuteurController',
+                            templateUrl: 'modules/administrateur/views/Administrateur.list.html',
+                            controller: 'AdministrateurController',
                             controllerAs: 'vm'
                         }
                     }
                 })
-                .state('auteur.detail', {
-                    parent: 'auteur',
-                    url: '/auteur/{id}',
+                .state('administrateur.detail', {
+                    parent: 'administrateur',
+                    url: '/administrateur/{id}',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
-                                templateUrl: 'modules/authors/views/auteur.detail.html',
-                                controller: 'AuteurDialogController',
+                                templateUrl: 'modules/administrateur/views/Administrateur.detail.html',
+                                controller: 'AdministrateurDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
-                                size: 'lg',
+                                size: 'sm',
                                 resolve: {
-                                    entity: ['Auteur', function (Auteur) {
+                                    entity: ['Administrateur', function (Administrateur) {
                                             console.log("valeur de id" + $stateParams.id);
-                                            return Auteur.get({id: $stateParams.id}).$promise;
+                                            return Administrateur.get({id: $stateParams.id}).$promise;
                                         }]
                                 }
                             })
                                     .result.then(function () {
-                                        $state.go('auteur', null, {reload: true});
+                                        $state.go('administrateur', null, {reload: true});
                                     }, function () {
-                                        $state.go('auteur');
+                                        $state.go('administrateur');
                                     });
                         }]
                 })
-                .state('auteur.new', {
-                    parent: 'auteur',
+                .state('administrateur.new', {
+                    parent: 'administrateur',
                     url: '/new',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
-                                templateUrl: 'modules/authors/views/auteur.create.html',
-                                controller: 'AuteurDialogController',
+                                templateUrl: 'modules/administrateur/views/Administrateur.create.html',
+                                controller: 'AdministrateurDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
-                                size: 'lg',
+                                size: 'sm',
                                 resolve: {
                                     entity: function () {
                                         return {
-                                            matricule: null,
-                                            nom: null,
-                                            telephone: null,
+                                            name: null,
                                             email: null,
+                                            password:null,
                                             id: null
                                         };
                                     }
                                 }
                             }).result.then(function () {
-                                $state.go('auteur', null, {reload: true});
+                                $state.go('administrateur', null, {reload: true});
                             }, function () {
-                                $state.go('auteur');
+                                $state.go('administrateur');
                             });
                         }]
                 })
-                .state('auteur.edit', {
-                    parent: 'auteur',
+                .state('administrateur.edit', {
+                    parent: 'administrateur',
                     url: '/{id}/edit',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
-                                templateUrl: 'modules/authors/views/auteur.edit.html',
-                                controller: 'AuteurDialogController',
+                                templateUrl: 'modules/administrateur/views/Administrateur.edit.html',
+                                controller: 'AdministrateurDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
-                                size: 'md',
+                                size: 'sm',
                                 resolve: {
-                                    entity: ['Auteur', function (Auteur) {
+                                    entity: ['Administrateur', function (Administrateur) {
                                         console.log("valeur de id" + $stateParams.id);
-                                            return Auteur.get({id: $stateParams.id}).$promise;
+                                            return Administrateur.get({id: $stateParams.id}).$promise;
                                         }]
                                 }
                             }).result.then(function () {
-                                $state.go('auteur', null, {reload: true});
+                                $state.go('administrateur', null, {reload: true});
                             }, function () {
                                 $state.go('^');
                             });
                         }]
                 })
-                .state('auteur.delete', {
-                    parent: 'auteur',
+                .state('administrateur.delete', {
+                    parent: 'administrateur',
                     url: '/{id}/delete',
                     onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                             $uibModal.open({
-                                templateUrl: 'modules/authors/views/auteur.delete.html',
-                                controller: 'AuteurDeleteController',
+                                templateUrl: 'modules/administrateur/views/Administrateur.delete.html',
+                                controller: 'AdministrateurDeleteController',
                                 controllerAs: 'vm',
-                                size: 'md',
+                                size: 'sm',
                                 resolve: {
-                                  entity: ['Auteur', function (Auteur) {
+                                  entity: ['Administrateur', function (Administrateur) {
                                           console.log("valeur de id peut etre ..." + $stateParams.id);
-                                          return Auteur.get({id: $stateParams.id}).$promise;
+                                          return Administrateur.get({id: $stateParams.id}).$promise;
                                       }]
                                 }
                             }).result.then(function () {
-                                $state.go('auteur', null, {reload: true});
+                                $state.go('administrateur', null, {reload: true});
                             }, function () {
                                 $state.go('^');
                             });

@@ -59,6 +59,7 @@
                                     entity: function () {
                                         return {
                                             position: null,
+                                            localite:null,
                                             name: null,
                                             id: null
                                         };
@@ -112,7 +113,7 @@
                             }).result.then(function () {
                                 $state.go('batiment', null, {reload: true});
                             }, function () {
-                                $state.go('^');
+                                $state.go('batiment');
                             });
                         }]
                 });

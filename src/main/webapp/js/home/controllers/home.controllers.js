@@ -25,10 +25,12 @@
           $scope.setTab = function(activeTab) {
             $scope.tab = activeTab;
           };
+          
             $scope.onclickNetwork = function () {
                 $scope.setTab(1);
                 $state.go('network');
           };
+          
           $scope.onclickBuilding = function () {
                 $scope.setTab(2);
                 $state.go('batiment');
@@ -45,12 +47,20 @@
                 $scope.setTab(5);
                 $state.go('user');
           };
-           $scope.onclickHelp = function () {
+          $scope.onclickEquipement = function () {
                 $scope.setTab(6);
+                $state.go('equipement');
+          };
+           $scope.onclickHelp = function () {
+                $scope.setTab(7);
                 $state.go('help');
           };
+          $scope.onclickAdministrateur = function () {
+                $scope.setTab(8);
+                $state.go('administrateur');
+          };
           $scope.onclickAbout = function () {
-                $scope.setTab(7);
+                $scope.setTab(9);
                 $state.go('about');
           };
     }
