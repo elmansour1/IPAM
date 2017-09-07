@@ -1,0 +1,123 @@
+<!--<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        
+        <title>Authentification</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <style>
+            body{
+                padding: 0px;
+                margin: 0px;
+                background-image: url('/images/Wallpapers/camtelNew.jpg');
+                background-attachment: fixed;
+                background-size: cover;
+                font-family: sans-serif;
+            } 
+            .title{
+                text-align: center;
+                padding: 50px 0px 20px;
+            }
+            .title h1{
+                margin: 0px;
+                padding: 0px;
+                background: bottom;
+                color: #fff;
+                text-transform: uppercase;
+                font-size: 36px;
+            }
+            .container{
+                width: 50%;
+                height: 400px;
+                background: #fff;
+                margin: 0 auto;
+                border-radius: 10px;
+                box-shadow: 0px 15px 40px rgba(0,0,0,.5);
+            }
+            .container .left{
+                float: left;
+                width: 50%;
+                height: 400px;
+                 border-radius: 12px;
+               background: url(/images/Wallpapers/key.jpg);
+                background-size: cover;
+                box-sizing: border-box;
+            }
+            .container .right{
+                float: right;
+                width: 50%;
+                height: 400px;
+                 border-radius: 10px;
+                box-sizing: border-box;
+            }
+            .formBox{
+                width: 100%;
+                padding: 80px 40px;
+                border-radius: 10px;
+                box-sizing: border-box;
+                height: 400px;
+                background: #fff;
+            }
+            label{
+                padding: 0px;
+                margin: 0px;
+                font-weight: bold;
+                color: #a6af13;
+            }
+            .formBox input{
+                width: 100%;
+               margin-bottom: 20px; 
+            }
+            .formBox input[type="text"],
+            input[type="password"]{
+                border: none;
+                border-bottom: 2px solid #a6af13;
+                outline: none;
+                height: 40px;
+            }
+            .formBox input[type="text"]:focus,
+            input[type="password"]:focus{
+                border-bottom: 2px solid #262626;
+            }
+            .formBox input[type="submit"]{
+                border: none;
+                outline: none;
+                height: 40px;
+                color: wheat;
+                background: #1976D2;
+                cursor: pointer;
+                border-radius: 20px;
+            }
+            .formBox input[type="submit"]:hover{
+                background: #a6af13;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="title">
+            <h1>Authentication</h1>
+        </div>
+        <div class="container">
+            <div class="left"></div>
+            <div class="right">
+                <form th:action="@{/login}" method="post" class="formBox">
+                    
+                   
+                            <label for="username">Nom d'utilisateur</label>
+                            <input type="text" name="username" id="username" placeholder="Username" />
+                        
+                   
+                      
+                            <label for="password">Mot de passe</label><br/>
+                            <input type="password" name="password" id="password" placeholder="Password"/>
+                      
+                    
+                       <input  type="submit" value="Sign In" />
+                       <a>Forget Password </a>
+                    
+                </form>
+            </div>
+        </div>
+    </body>
+</html>-->

@@ -1,35 +1,35 @@
 <div class="" >
     <div >
         <ul class="nav nav-header nav-pills">
-            <li ng-class="{ active:isSet(0) }">
-                <a href  ng-click="onclickHome()">Home Admin</a>
+            <li ng-class="{ active:isSet(1) }" >
+                <a href  ng-click="onclickHome()" class="glyphicon glyphicon-home"> Accueil</a>
             </li>
-            <li ng-class="{ active:isSet(1) }">
-                <a href  ng-click="onclickNetwork()">Networks</a>
-            </li>
-            <li ng-class="{ active:isSet(2) }">
-                <a href  ng-click="onclickBuilding()">Buildings</a>
+            <li ng-class="{ active:isSet(2) }" >
+                <a href  ng-click="onclickAdministrateur()" class="glyphicon glyphicon-user"> Administrateurs</a>
             </li>
             <li ng-class="{ active:isSet(3) }">
-                <a href  ng-click="onclickSubnet()">Subnets</a>
+                <a href  ng-click="onclickNetwork()">Reseaux</a>
             </li>
             <li ng-class="{ active:isSet(4) }">
-                <a href  ng-click="onclickVlan()">Vlans</a>
+                <a href  ng-click="onclickBuilding()"><i class="glyphicon glyphicon-grain"> </i> Batiments</a>
             </li>
             <li ng-class="{ active:isSet(5) }">
-                <a href  ng-click="onclickUsers()">Employes</a>
+                <a href  ng-click="onclickSubnet()">Sous-Reseaux</a>
             </li>
             <li ng-class="{ active:isSet(6) }">
-                <a href  ng-click="onclickEquipement()">Equipements</a>
+                <a href  ng-click="onclickVlan()" >Vlans</a>
             </li>
-            <li ng-class="{ active:isSet(7) }">
-                <a href  ng-click="onclickHelp()">Help</a>
+            <li ng-class="{ active:isSet(7) }" >
+                <a href  ng-click="onclickUsers()" class="glyphicon glyphicon-user"> Employes</a>
             </li>
             <li ng-class="{ active:isSet(8) }">
-                <a href  ng-click="onclickAdministrateur()">Administrateur</a>
+                <a href  ng-click="onclickEquipement()" class="glyphicon glyphicon-wrench"> Equipements</a>
             </li>
             <li ng-class="{ active:isSet(9) }">
-                <a href  ng-click="onclickAbout()">About</a>
+                <a href  ng-click="onclickHelp()">Aide</a>
+            </li>
+            <li ng-class="{ active:isSet(10) }">
+                <a href  ng-click="onclickAbout()">Apropos</a>
             </li>
         </ul>
     </div >

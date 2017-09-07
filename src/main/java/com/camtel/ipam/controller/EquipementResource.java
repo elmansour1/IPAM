@@ -92,7 +92,7 @@ public class EquipementResource {
      * @return the ResponseEntity with status 200 (OK) and the list of equipements in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @RequestMapping(value = " /equipements ",
+    @RequestMapping(value = "/equipements",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Equipement>> getAllEquipements()

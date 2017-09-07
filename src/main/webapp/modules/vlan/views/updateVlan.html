@@ -3,24 +3,36 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myClientLabel">Edit a Building</h4>
+        <h4 class="modal-title" id="myClientLabel">Edit a Vlan</h4>
     </div>
     <div class="modal-body">
-        <div class="form-group" ng-show="vm.batiment.id">
+        <div class="form-group" ng-show="vm.vlan.id">
             <label for="id">ID</label>
             <input type="textr" class="form-control" id="id" name="id"
-                   ng-model="vm.batiment.id" readonly />
+                   ng-model="vm.vlan.id" readonly />
+        </div>
+        <div class="form-group" >
+            <label class="control-label" for="field_name">Number : </label>
+            <input type="text" class="form-control" name="number" id="field_name"
+                   ng-model="vm.vlan.number"
+                   />
         </div>
         <div class="form-group" >
             <label class="control-label" for="field_name">Name : </label>
             <input type="text" class="form-control" name="nom" id="field_name"
-                   ng-model="vm.batiment.name"
+                   ng-model="vm.vlan.name"
                    />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_position">Position :</label>
+            <label class="control-label" for="field_position">Building :</label>
             <input type="text" class="form-control" name="age" id="field_position"
-                   ng-model="vm.batiment.position"
+                   ng-model="vm.vlan.batiment.name"
+                   />
+        </div>
+        <div class="form-group" >
+            <label class="control-label" for="field_name">Reseau: </label>
+            <input type="text" class="form-control" name="nom" id="field_name"
+                   ng-model="vm.vlan.reseau.adress"
                    />
         </div>
     </div>

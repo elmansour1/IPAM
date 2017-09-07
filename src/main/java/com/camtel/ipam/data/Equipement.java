@@ -5,13 +5,11 @@
  */
 package com.camtel.ipam.data;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,25 +23,23 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Equipement implements Serializable{
-    private static final long serialVersionUID = 1L;
+    
+    private static final long serialVersionUID = 8129901851444620386L;
+   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column
+    @Column(nullable = false)
     private String marque;
-    
-    @Column
+    @Column(nullable = false)
     private String description;
-    
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JsonBackReference
-    @JoinColumn
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "users_id")
+//    @JsonManagedReference
     private Users users;
-    
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JsonBackReference
-    @JoinColumn
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "reseau_id")
+//    @JsonManagedReference
     private Reseau reseau;
 
     public Equipement() {
@@ -54,35 +50,11 @@ public class Equipement implements Serializable{
         this.description = description;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.marque);
-        hash = 17 * hash + Objects.hashCode(this.description);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Equipement other = (Equipement) obj;
-        if (!Objects.equals(this.marque, other.marque)) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Equipement{" + "id=" + id + ", marque=" + marque + ", description=" + description + '}';
+    public Equipement(String marque, String description, Users users, Reseau reseau) {
+        this.marque = marque;
+        this.description = description;
+        this.users = users;
+        this.reseau = reseau;
     }
 
     public Long getId() {
@@ -116,7 +88,7 @@ public class Equipement implements Serializable{
     public void setUsers(Users users) {
         this.users = users;
     }
-    
+
     public Reseau getReseau() {
         return reseau;
     }
@@ -124,6 +96,31 @@ public class Equipement implements Serializable{
     public void setReseau(Reseau reseau) {
         this.reseau = reseau;
     }
+
+    @Override
+    public String toString() {
+        return "Equipement{" + "marque=" + marque + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.marque);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Equipement other = (Equipement) obj;
+        return Objects.equals(this.marque, other.marque);
+    }
+    
     
 }
     

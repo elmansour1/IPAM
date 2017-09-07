@@ -62,7 +62,6 @@
                                             name: null,
                                             batiment: null,
                                             reseau: null,
-                                            user: null,
                                             id: null
                                         };
                                     }

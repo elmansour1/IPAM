@@ -9,13 +9,14 @@ body {
   width: 100%;
   font-family: 'Quicksand', 'Helvetica Neue',Helvetica,Arial, sans-serif;
   font-size: 16px;
-  background: #E7E7E7;
+  background: #fff;
 }
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
   margin-bottom: 2em;
   padding: 0 0 0.5em;
+  background: #fff;
 }
 .pos{
 	margin-left: 40%;
@@ -131,4 +132,8 @@ Fin de l'animation - apparition de l'élément
 
 .moda{
     width: 100px;
+}
+
+.btn{
+    border-radius: 100px;
 }

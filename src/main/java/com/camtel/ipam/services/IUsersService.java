@@ -15,7 +15,7 @@ import java.util.List;
 public interface IUsersService {
     public Users createOrUpdate(Users users);
     public List<Users>  getAllUsers();
-    public void deleteUsers(String matricule);
-    public Users findByMatricule(String matricule);
+    public void deleteUsers(Long id);
+    public Users findById(Long id);
     
 }

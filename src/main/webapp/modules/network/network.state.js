@@ -30,7 +30,7 @@
                                 controller: 'NetworkDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
-                                size: 'lg',
+                                size: 'sm',
                                 resolve: {
                                     entity: ['Network', function (Network) {
                                             console.log("valeur de id" + $stateParams.id);
@@ -60,9 +60,11 @@
                                         return {
                                             adress: null,
                                             description: null,
-                                            vlan: null,
                                             masque: null,
                                             gateway: null,
+                                            classe: null,
+                                            broadcast: null,
+                                            nid: null,
                                             id: null
                                         };
                                     }
@@ -70,7 +72,7 @@
                             }).result.then(function () {
                                 $state.go('network', null, {reload: true});
                             }, function () {
-                                $state.go('network');
+                                $state.go('^');
                             });
                         }]
                 })
@@ -93,7 +95,7 @@
                             }).result.then(function () {
                                 $state.go('network', null, {reload: true});
                             }, function () {
-                                $state.go('network');
+                                $state.go('^');
                             });
                         }]
                 })
@@ -118,7 +120,7 @@
                                 $state.go('^');
                             });
                         }]
-                })
+                });
             }
 
 })();

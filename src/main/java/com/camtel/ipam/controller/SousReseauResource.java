@@ -70,7 +70,7 @@ public class SousReseauResource {
      * or with status 500 (Internal Server Error) if the sous_reseau couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/batiments/{id}",
+    @RequestMapping(value = "/sous_reseaux/{id}",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Sous_Reseau> updateReseau(@RequestBody Sous_Reseau sous_reseau) throws URISyntaxException {
@@ -89,7 +89,7 @@ public class SousReseauResource {
      * @return the ResponseEntity with status 200 (OK) and the list of sous_reseaux in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @RequestMapping(value = " /sous_reseaux ",
+    @RequestMapping(value = " /sous_reseaux",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Sous_Reseau>> getAllSousReseaux()

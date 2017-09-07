@@ -1,17 +1,18 @@
 <div class="well tabAnim">
     <div class="row">
-        <button class="btn btn-success col-lg-1" ng-click="fetchAllBuildings()"><i class="glyphicon glyphicon-refresh"> </i>Refresh</button>
-        <a ui-sref="batiment.new" class="btn btn-success col-lg-1 pull-right"><i class="glyphicon glyphicon-plus"> </i>New</a>
+        <a ui-sref="batiment.new" class="btn btn-xs btn-success  pull-right"><i class="glyphicon glyphicon-plus"> </i></a>
     </div><br/>
-    <div class="row">
-        <label class="col-lg-1">Research:&nbsp; &nbsp;</label> 
-        &nbsp;<input type="text" class="col-lg-2 "/>
-    </div>
-    <table class="table table-striped table-bordered table-responsive table-condensed">
-        <b><center>Building Table</center></b>
+    <form class="form-inline">
+        <div class="form-group">
+            <label>Search:</label> 
+            <input type="text" class=" form-control" ng-model="search"/>
+        </div>
+    </form>
+    <table class="table table-striped table-bordered container">
+        <b><center>Table Batiment</center></b>
         <thead class="popover-content">
-            <tr class="panel-heading btn-primary">
-                <th class="text-center">Name</th>
+            <tr class="panel-heading ">
+                <th class="text-center">Nom</th>
                 <th class="text-center">Localite</th>
                 <th class="text-center">Position</th>
                 <th class="text-center">Delete</th>
@@ -20,27 +21,43 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in vm.batiments">
+            <tr dir-paginate="item in vm.batiments|itemsPerPage:5|filter:search">
                 <td class="text-center">{{item.name}}</td>
                 <td class="text-center">{{item.localite}}</td>
                 <td class="text-center">{{item.position}}</td>
                 <td class="text-center">
                     <button  class="btn btn-xs btn-primary btn-danger" ui-sref="batiment.delete({id:item.id})"> <i  class="glyphicon glyphicon-trash"></i>
-                        Delete
+                       
                     </button>
                 </td>
-                <td>
+                <td class="text-center">
                     <button  class="btn btn-xs btn-info" ui-sref="batiment.edit({id:item.id})"><i class="glyphicon glyphicon-edit"></i>
-                        Edit
+                        
                     </button>
                 </td>
-                <td>
+                <td class="text-center">
                     <button  class="btn btn-xs btn-warning" ui-sref="batiment.detail({id:item.id})"><i class="glyphicon glyphicon-print"></i>
-                        detail
+                       
                     </button>
                 </td>
             </tr>
         </tbody>
+        <tfoot>
+            <dir-pagination-controls
+                max-size="5"
+                direction-links="true"
+                boundary-links="true">
+
+            </dir-pagination-controls>
+        </tfoot>
     </table>
 </div>
+<!-- <div class="container">
+        <ul class="nav nav-pills">
+            <li ng-class="{active:$index==pageCourante}" 
+            class="clickable" ng-repeat="p in pages track by $index">
+            <a ng-click="gotoPage($index)">{{$index}}</a>
+            </li>
+        </ul>
+    </div-->
 

@@ -50,13 +50,13 @@ public class UsersResource {
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Users> createUsers(@RequestBody Users user) throws URISyntaxException {
         log.debug("REST request to save user : {}",user);
-        if (user.getMatricule() != null) {
+        if (user.getId()!= null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("user", "idexists", "A new user cannot already have an ID")).body(null);
         }
         Users result = usersService.createOrUpdate(user);
         
-        return ResponseEntity.created(new URI("/api/users/" + result.getMatricule()))
-            .headers(HeaderUtil.createEntityCreationAlert("user", result.getMatricule()))
+        return ResponseEntity.created(new URI("/api/users/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("user", result.getId().toString()))
             .body(result);
     }
     
@@ -69,18 +69,19 @@ public class UsersResource {
      * or with status 500 (Internal Server Error) if the user couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/users/{matricule}",
+    @RequestMapping(value = "/users/{id}",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Users> updateUsers(@RequestBody Users user) throws URISyntaxException {
         log.debug("REST request to update user : {}", user);
-        if (user.getMatricule() == null) {
+        if (user.getId() == null) {
             return createUsers(user);
         }
         Users result = usersService.createOrUpdate(user);
+        
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("user ", user.getMatricule()))
-                    .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert("user ", user.getId().toString()))
+                .body(result);
     }
     
     /**
@@ -88,7 +89,7 @@ public class UsersResource {
      * @return the ResponseEntity with status 200 (OK) and the list of sous_reseaux in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @RequestMapping(value = " /users ",
+    @RequestMapping(value = " /users",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Users>> getAllUsers()
@@ -101,31 +102,32 @@ public class UsersResource {
     /**
      * GET  /user/:id : get the "matricule" user.
      *
-     * @param matricule the id of the user to retrieve
+     * @param id
      * @return the ResponseEntity with status 200 (OK) and with body the user, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/users/{matricule}",
+    @RequestMapping(value = "/users/{id}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Users> getUsers(@PathVariable String matricule) {
-        log.debug("REST request to get user : {}", matricule);
-        Users result =usersService.findByMatricule(matricule);
+    public ResponseEntity<Users> getUsers(@PathVariable Long id) {
+        log.debug("REST request to get user : {}", id);
+        Users result =usersService.findById(id);
         return new ResponseEntity<>(result, null, HttpStatus.OK);
     }
     
     /**
      * DELETE  /users/:matricule : delete the "matricule" user.
      *
-     * @param matricule the id of the reseau to delete
+     * @param id
      * @return the ResponseEntity with status 200 (OK)
      */
-    @RequestMapping(value = "/users/{matricule}",
+    @RequestMapping(value = "/users/{id}",
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> deleteUsrs(@PathVariable String matricule) {
-        log.debug("REST request to delete user : {}", matricule);
-        usersService.deleteUsers(matricule);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("user", matricule)).build();
+    public ResponseEntity<Void> deleteUsrs(@PathVariable Long id) {
+        log.debug("REST request to delete user : {}", id);
+        usersService.deleteUsers(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("user", id.toString()))
+                .build();
     }
 
 

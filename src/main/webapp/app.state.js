@@ -1,4 +1,4 @@
-var app = angular.module('ipam',[
+var app = angular.module('ipam',['angularUtils.directives.dirPagination',
    'ngResource',
    'ngAria',
    'ui.bootstrap',

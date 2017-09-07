@@ -3,11 +3,11 @@
 
     angular
         .module('ipam')
-        .controller('AppController', ourController);
+        .controller('AppController', AppController);
 
     ourController.$inject = ['$scope'];
 
-    function ourController ($scope) {
+    function AppController ($scope) {
        $scope.information =" IP Adress Management ...";
     }
 })();

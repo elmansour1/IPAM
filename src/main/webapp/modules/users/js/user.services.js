@@ -8,7 +8,7 @@
     BuildingFonction.$inject = ['$resource'];
 
     function BuildingFonction ($resource) {
-        var resourceUrl =  'api/users/:matricule';
+        var resourceUrl =  'api/users/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

@@ -65,7 +65,7 @@
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('memoire :administrateurUpdate', result);
+            $scope.$emit('ipam :administrateurUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

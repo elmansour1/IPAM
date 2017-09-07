@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReseauResource {
     private final Logger log = LoggerFactory.getLogger(BatimentResource.class);
 
-    @Autowired
+    @Inject
     private IReseauService reseauService;
     
       /**
@@ -45,18 +45,17 @@ public class ReseauResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new reseau, or with status 400 (Bad Request) if the reseau has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/reseaux",
-        method = RequestMethod.POST,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/networks",
+        method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Reseau> createReseau(@RequestBody Reseau reseau) throws URISyntaxException {
         log.debug("REST request to save reseau : {}",reseau);
         if (reseau.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("reseau", "idexists", "A new reseau cannot already have an ID"))
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("reseau", "idexists", "A new network cannot already have an ID"))
                     .body(null);
         }
         Reseau result = reseauService.createOrUpdateReseau(reseau);
         
-        return ResponseEntity.created(new URI("/api/reseaux/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/networks/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("reseau", result.getId().toString()))
             .body(result);
     }
@@ -70,7 +69,7 @@ public class ReseauResource {
      * or with status 500 (Internal Server Error) if the reseau couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @RequestMapping(value = "/reseaux/{id}",
+    @RequestMapping(value = "/networks/{id}",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Reseau> updateReseau(@RequestBody Reseau reseau) throws URISyntaxException {
@@ -89,7 +88,7 @@ public class ReseauResource {
      * @return the ResponseEntity with status 200 (OK) and the list of reseaux in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @RequestMapping(value = " /reseaux ",
+    @RequestMapping(value = "/networks",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Reseau>> getAllReseaux()
@@ -105,7 +104,7 @@ public class ReseauResource {
      * @param id the id of the reseau to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the batiment, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/reseaux/{id}",
+    @RequestMapping(value = "/networks/{id}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Reseau> getReseau(@PathVariable Long id) {
@@ -120,11 +119,11 @@ public class ReseauResource {
      * @param id the id of the reseau to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @RequestMapping(value = "/reseaux/{id}",
+    @RequestMapping(value = "/networks/{id}",
         method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteReseau(@PathVariable Long id) {
-        log.debug("REST request to delete batiment : {}", id);
+        log.debug("REST request to delete network : {}", id);
         reseauService.deleteNetwork(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("reseau", id.toString())).build();
     }

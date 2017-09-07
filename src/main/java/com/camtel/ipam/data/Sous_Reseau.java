@@ -23,31 +23,32 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Sous_Reseau implements Serializable{
+    
+    private static final long serialVersionUID = -1165374957417679501L;
+   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    
+    @Column(nullable = false)
     private String adress;
-    
-    
+    @Column(nullable = false)
     private String description;
-    
-    
-    private String equipment;
-    
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "reseau_id", nullable = false)
     private Reseau reseau;
 
-    public Sous_Reseau(String adress, String description, String equipment, Reseau reseau) {
-        this.adress = adress;
-        this.description = description;
-        this.equipment = equipment;
-        this.reseau = reseau;
+    public Sous_Reseau() {
     }
 
-    public Sous_Reseau() {
+    public Sous_Reseau(String adress, String description) {
+        this.adress = adress;
+        this.description = description;
+    }
+
+    public Sous_Reseau(String adress, String description, Reseau reseau) {
+        this.adress = adress;
+        this.description = description;
+        this.reseau = reseau;
     }
 
     public Long getId() {
@@ -74,14 +75,6 @@ public class Sous_Reseau implements Serializable{
         this.description = description;
     }
 
-    public String getEquipment() {
-        return equipment;
-    }
-
-    public void setEquipment(String equipment) {
-        this.equipment = equipment;
-    }
-
     public Reseau getReseau() {
         return reseau;
     }
@@ -92,23 +85,18 @@ public class Sous_Reseau implements Serializable{
 
     @Override
     public String toString() {
-        return "Sous_Reseau{" + "adress=" + adress + ", description=" + description + ", equipment=" + equipment + ", reseau=" + reseau + '}';
+        return "Sous_Reseau{" + "adress=" + adress + ", description=" + description + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.adress);
-        hash = 79 * hash + Objects.hashCode(this.description);
-        hash = 79 * hash + Objects.hashCode(this.equipment);
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.adress);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -119,15 +107,8 @@ public class Sous_Reseau implements Serializable{
         if (!Objects.equals(this.adress, other.adress)) {
             return false;
         }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.equipment, other.equipment)) {
-            return false;
-        }
         return true;
     }
     
     
-
 }

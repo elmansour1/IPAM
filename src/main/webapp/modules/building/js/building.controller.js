@@ -57,17 +57,21 @@
         function save () {
             vm.isSaving = true;
             if (vm.batiment.id !== null) {
-               console.log("vm.batiment.id = "+vm.batiment.id+" vm.batiment.localite = "+vm.batiment.localite+" vm.batiment.nom = "+vm.batiment.nom);
+                //alert('the building exist');
+               console.log("vm.batiment.id = "+vm.batiment.id+" vm.batiment.localite = "+vm.batiment.localite+" vm.batiment.nom = "+vm.batiment.name);
                Building.update({id : vm.batiment.id} ,vm.batiment, onSaveSuccess, onSaveError);
             } else {
                 Building.save(vm.batiment, onSaveSuccess, onSaveError);
+               
             }
+             
         }
 
         function onSaveSuccess (result) {
             $scope.$emit('ipam : batimentUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
+            alert('the building has been creating ');
         }
 
         function onSaveError () {

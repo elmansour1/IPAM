@@ -72,7 +72,7 @@ public class AdministrateurResource {
     
     @RequestMapping(value = "/administrateurs/{id}",
         method = RequestMethod.PUT,
-        produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+        produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Administrateur> updateAdministrateur(@RequestBody Administrateur administrateur) throws URISyntaxException {
         log.debug("REST request to update administrateur : {}", administrateur);
         if (administrateur.getId() == null) {
@@ -90,7 +90,7 @@ public class AdministrateurResource {
      * @return the ResponseEntity with status 200 (OK) and the list of batiments in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @RequestMapping(value = " /administrateurs ",
+    @RequestMapping(value = "/administrateurs",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Administrateur>> getAllAdministrateurs()
@@ -123,7 +123,7 @@ public class AdministrateurResource {
      */
     @RequestMapping(value = "/administrateurs/{id}",
         method = RequestMethod.DELETE,
-        produces = MediaType.ALL_VALUE)
+        produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteAdministrateur(@PathVariable Long id) {
         log.debug("REST request to delete administrateur : {}", id);
         iAdministrateurService.deleteAdministrateur(id);

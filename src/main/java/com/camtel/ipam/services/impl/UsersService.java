@@ -37,15 +37,12 @@ public class UsersService implements IUsersService{
     }
 
     @Override
-    public void deleteUsers(String matricule) {
-        iusers.delete(matricule);
+    public void deleteUsers(Long id) {
+        iusers.delete(id);
     }
 
     @Override
-    public Users findByMatricule(String matricule) {
-        return iusers.findOne(matricule);
+    public Users findById(Long id) {
+        return iusers.findOne(id);
     }
-    
-    
-
 }

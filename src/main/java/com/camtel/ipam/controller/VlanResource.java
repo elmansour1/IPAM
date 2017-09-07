@@ -51,13 +51,13 @@ public class VlanResource {
         produces = MediaType.APPLICATION_JSON_VALUE) 
             public ResponseEntity<Vlan> createVlan(@RequestBody Vlan vlan) throws URISyntaxException {
         log.debug("REST request to save vlan : {}",vlan);
-        if (vlan.getNumber() != 0) {
+        if (vlan.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("vlan", "idexists", "A new vlan cannot already have an ID")).body(null);
         }
         Vlan result = vlanService.createOrUpdatevlan(vlan);
         
-        return ResponseEntity.created(new URI("/api/vlan/" + result.getNumber()))
-            .headers(HeaderUtil.createEntityCreationAlert("vlan", result.getName()))
+        return ResponseEntity.created(new URI("/api/vlans/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("vlan", result.getId().toString()))
             .body(result);
     }
     
@@ -89,7 +89,7 @@ public class VlanResource {
      * @return the ResponseEntity with status 200 (OK) and the list of vlan in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @RequestMapping(value = " /vlans ",
+    @RequestMapping(value = "/vlans",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Vlan>> getAllVlans()

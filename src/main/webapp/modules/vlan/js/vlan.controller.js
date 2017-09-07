@@ -68,9 +68,11 @@
             $scope.$emit('ipam : vlanUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
+            alert('Le Vlan a été enrégistrer avec succès');
         }
 
         function onSaveError () {
+            alert('error');
             vm.isSaving = false;
         }
     };

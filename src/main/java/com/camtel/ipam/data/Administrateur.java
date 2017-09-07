@@ -24,23 +24,21 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Administrateur implements Serializable{
-    private static final long serialVersionUID = 1L;
+    
+    private static final long serialVersionUID = -5901486945034785770L;
+   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column
+    @Column(nullable = false)
     private String name;
-    
-    @Column
+    @Column(nullable = false)
     private String email;
-    
-    @Column
+    @Column(nullable = false)
     private String password;
-    
-    @OneToMany(mappedBy = "administrateur", cascade = {CascadeType.ALL})
-    @JsonBackReference
-    private List<Reseau> listOfReseaux;
+//    @OneToMany(mappedBy = "administrateur")
+//    @JsonBackReference
+//    private List<Reseau> listOfReseaux;
 
     public Administrateur() {
     }
@@ -49,38 +47,6 @@ public class Administrateur implements Serializable{
         this.name = name;
         this.email = email;
         this.password = password;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.name);
-        hash = 71 * hash + Objects.hashCode(this.email);
-        hash = 71 * hash + Objects.hashCode(this.password);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Administrateur other = (Administrateur) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        return Objects.equals(this.password, other.password);
-    }
-
-    @Override
-    public String toString() {
-        return "Administrateur{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", listOfReseaux=" + listOfReseaux + '}';
     }
 
     public Long getId() {
@@ -115,14 +81,41 @@ public class Administrateur implements Serializable{
         this.password = password;
     }
 
-    public List<Reseau> getListOfReseaux() {
-        return listOfReseaux;
+//    public List<Reseau> getListOfReseaux() {
+//        return listOfReseaux;
+//    }
+//
+//    public void setListOfReseaux(List<Reseau> listOfReseaux) {
+//        this.listOfReseaux = listOfReseaux;
+//    }
+
+    @Override
+    public String toString() {
+        return "Administrateur{" + "name=" + name + '}';
     }
 
-    public void setListOfReseaux(List<Reseau> listOfReseaux) {
-        this.listOfReseaux = listOfReseaux;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.name);
+        hash = 53 * hash + Objects.hashCode(this.password);
+        return hash;
     }
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Administrateur other = (Administrateur) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return Objects.equals(this.password, other.password);
+    }
     
     
 }

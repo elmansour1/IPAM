@@ -6,11 +6,8 @@
 
 package com.camtel.ipam.data;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -27,37 +23,64 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Reseau implements Serializable{
+    
+    private static final long serialVersionUID = -6187989417804681804L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column
-    private int adress;
-    
-    @Column
+    @Column(nullable = false)
+    private String adress;
+    @Column(nullable = false)
     private String description;
+    @Column
+    private String masque;
+    @Column(nullable = false)
+    private String gateway; 
     
     @Column
-    private int masque;
-    
+    private String broadcast;
     @Column
-    private int gateway;
-    
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Vlan vlan;
-    
-    @OneToMany(mappedBy = "reseau", cascade = {CascadeType.ALL})
-    @JsonBackReference
-    private List<Equipement> listOfEquipements;
-    
-    @OneToMany(mappedBy = "reseau", cascade = CascadeType.ALL)
-    private List<Sous_Reseau> listOfSubnet;
-    
+    private String plage;
+    @Column
+    private String Classe;
+    @Column
+    private String nid;
+//    @OneToMany(mappedBy = "reseau")
+//    @JsonBackReference
+//    private List<Equipement> listOfEquipements;
+//    @OneToMany(mappedBy = "reseau")
+//    private List<Sous_Reseau> listOfSubnet;
     @ManyToOne(optional = true)
-    //@JsonBackReference
-    //@JoinColumn
+    @JoinColumn(name = "administrateur_id")
     private Administrateur administrateur;
+    @ManyToOne(optional = true)
+//    @JsonManagedReference
+    @JoinColumn(name = "vlan_id")
+    private Vlan vlan;
+
+    public Reseau() {
+    }
+
+    public Reseau(String adress, String description, String masque, String gateway, String broadcast, String plage, String Classe, String nid) {
+        this.adress = adress;
+        this.description = description;
+        this.masque = masque;
+        this.gateway = gateway;
+        this.broadcast = broadcast;
+        this.plage = plage;
+        this.Classe = Classe;
+        this.nid = nid;
+    }
+
+    public Reseau(String adress, String description, String masque, String gateway, Administrateur administrateur, Vlan vlan) {
+        this.adress = adress;
+        this.description = description;
+        this.masque = masque;
+        this.gateway = gateway;
+        this.administrateur = administrateur;
+        this.vlan = vlan;
+    }
 
     public Long getId() {
         return id;
@@ -67,11 +90,11 @@ public class Reseau implements Serializable{
         this.id = id;
     }
 
-    public int getAdress() {
+    public String getAdress() {
         return adress;
     }
 
-    public void setAdress(int adress) {
+    public void setAdress(String adress) {
         this.adress = adress;
     }
 
@@ -83,20 +106,76 @@ public class Reseau implements Serializable{
         this.description = description;
     }
 
-    public int getMasque() {
+    public String getMasque() {
         return masque;
     }
 
-    public void setMasque(int masque) {
+    public void setMasque(String masque) {
         this.masque = masque;
     }
 
-    public int getGateway() {
+    public String getGateway() {
         return gateway;
     }
 
-    public void setGateway(int gateway) {
+    public void setGateway(String gateway) {
         this.gateway = gateway;
+    }
+
+    public String getBroadcast() {
+        return broadcast;
+    }
+
+    public void setBroadcast(String broadcast) {
+        this.broadcast = broadcast;
+    }
+
+    public String getPlage() {
+        return plage;
+    }
+
+    public void setPlage(String plage) {
+        this.plage = plage;
+    }
+
+    public String getClasse() {
+        return Classe;
+    }
+
+    public void setClasse(String Classe) {
+        this.Classe = Classe;
+    }
+
+    public String getNid() {
+        return nid;
+    }
+
+    public void setNid(String nid) {
+        this.nid = nid;
+    }
+
+//    public List<Equipement> getListOfEquipements() {
+//        return listOfEquipements;
+//    }
+//
+//    public void setListOfEquipements(List<Equipement> listOfEquipements) {
+//        this.listOfEquipements = listOfEquipements;
+//    }
+//
+//    public List<Sous_Reseau> getListOfSubnet() {
+//        return listOfSubnet;
+//    }
+//
+//    public void setListOfSubnet(List<Sous_Reseau> listOfSubnet) {
+//        this.listOfSubnet = listOfSubnet;
+//    }
+
+    public Administrateur getAdministrateur() {
+        return administrateur;
+    }
+
+    public void setAdministrateur(Administrateur administrateur) {
+        this.administrateur = administrateur;
     }
 
     public Vlan getVlan() {
@@ -107,54 +186,20 @@ public class Reseau implements Serializable{
         this.vlan = vlan;
     }
 
-    public List<Sous_Reseau> getListOfSubnet() {
-        return listOfSubnet;
-    }
-
-    public void setListOfSubnet(List<Sous_Reseau> listOfSubnet) {
-        this.listOfSubnet = listOfSubnet;
-    }
-
-    public List<Equipement> getListOfEquipements() {
-        return listOfEquipements;
-    }
-
-    public void setListOfEquipements(List<Equipement> listOfEquipements) {
-        this.listOfEquipements = listOfEquipements;
-    }
-
-    public Administrateur getAdministrateur() {
-        return administrateur;
-    }
-
-    public void setAdministrateur(Administrateur administrateur) {
-        this.administrateur = administrateur;
-    }
-
-    
-    
     @Override
     public String toString() {
-        return "Reseau{" + "adress=" + adress + ", description=" + description + ", masque=" + masque + ", gateway=" + gateway + ", vlan=" + vlan + '}';
+        return "Reseau{" + "adress=" + adress + ", masque=" + masque + ", gateway=" + gateway + '}';
     }
 
-    
-    
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.adress);
-        hash = 23 * hash + Objects.hashCode(this.description);
-        hash = 23 * hash + Objects.hashCode(this.masque);
-        hash = 23 * hash + Objects.hashCode(this.gateway);
+        hash = 71 * hash + Objects.hashCode(this.adress);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -165,18 +210,9 @@ public class Reseau implements Serializable{
         if (!Objects.equals(this.adress, other.adress)) {
             return false;
         }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.masque, other.masque)) {
-            return false;
-        }
-        if (!Objects.equals(this.gateway, other.gateway)) {
-            return false;
-        }
         return true;
     }
     
     
-    
+   
 }

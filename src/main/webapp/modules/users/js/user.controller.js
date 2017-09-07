@@ -50,15 +50,15 @@
         });
 
         function clear () {
-        console.log("mon matricule est ..."+vm.user.matricule);
+        console.log("mon id est ..."+vm.user.id);
             $uibModalInstance.dismiss('cancel');
         }
 
         function save () {
             vm.isSaving = true;
-            if (vm.user.matricule !== null) {
-               console.log("vm.user.matricule = "+vm.user.matricule+" vm.user.firstName = "+vm.user.firstName);
-               User.update({matricule : vm.user.matricule} ,vm.user, onSaveSuccess, onSaveError);
+            if (vm.user.id !== null) {
+               console.log("vm.user.id = "+vm.user.id+" vm.user.firstName = "+vm.user.firstName);
+               User.update({id : vm.user.id} ,vm.user, onSaveSuccess, onSaveError);
             } else {
                 User.save(vm.user, onSaveSuccess, onSaveError);
             }
@@ -66,6 +66,7 @@
 
         function onSaveSuccess (result) {
             $scope.$emit('ipam : userUpdate', result);
+            $scope.erreur = "Creation de L'employé avec succè";
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
@@ -90,8 +91,8 @@
             $uibModalInstance.dismiss('cancel');
         }
 
-        function confirmDelete (matricule) {
-              User.delete({matricule: matricule},
+        function confirmDelete (id) {
+              User.delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

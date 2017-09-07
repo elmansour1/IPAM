@@ -24,13 +24,7 @@
                    ng-model="vm.network.description"
                    />
         </div>  
-        <div class="form-group">
-            <label class="control-label" for="field_vlan">Vlan :</label>
-            <input type="text" class="form-control" name="vlan" id="field_vlan"
-                   ng-model="vm.network.vlan"
-                   />
-        </div>
-        <div class="form-group">
+         <div class="form-group">
             <label class="control-label" for="field_masque">Mask :</label>
             <input type="text" class="form-control" name="masque" id="field_masque"
                    ng-model="vm.network.masque"
@@ -42,6 +36,14 @@
                    ng-model="vm.network.gateway"
                    />
         </div>
+        <div class="form-group">
+            <label class="control-label" for="field_vlan">Vlan :</label>
+            <select class="form-control" name="vlan" id="field_vlan"
+                    ng-model="vm.network.vlan" ng-option="vlan as vlan.number for vlan in vlans" >
+                <option value="">Veiller selectionner un vlan</option>
+            </select>
+        </div>
+       
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

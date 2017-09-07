@@ -8,10 +8,8 @@ package com.camtel.ipam.data;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,30 +23,25 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Vlan implements Serializable{
+    
+    private static final long serialVersionUID = -895213272854416387L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column
+    @Column(nullable = false)
     private int number;
-    
-    @Column
+    @Column(nullable = false, length = 10)
     private String name;
-    
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(insertable = true)
+    @ManyToOne
+    @JoinColumn(name = "batiment_id" )
+//    @JsonManagedReference
     private Batiment batiment;
-    
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(insertable = true)
-    private Reseau reseau;
-    
-    public Vlan(int number, String name, Batiment batiment, Reseau reseau) {
-        this.number = number;
-        this.name = name;
-        this.batiment = batiment;
-        this.reseau = reseau;
-        
+//    @OneToMany(mappedBy = "vlan")
+//    @JsonBackReference
+//    private List<Reseau> listOfReseaux;
+
+    public Vlan() {
     }
 
     public Vlan(int number, String name) {
@@ -56,7 +49,10 @@ public class Vlan implements Serializable{
         this.name = name;
     }
 
-    public Vlan() {
+    public Vlan(int number, String name, Batiment batiment) {
+        this.number = number;
+        this.name = name;
+        this.batiment = batiment;
     }
 
     public Long getId() {
@@ -66,8 +62,6 @@ public class Vlan implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-
-    
 
     public int getNumber() {
         return number;
@@ -93,34 +87,29 @@ public class Vlan implements Serializable{
         this.batiment = batiment;
     }
 
-    public Reseau getReseau() {
-        return reseau;
-    }
-
-    public void setReseau(Reseau reseau) {
-        this.reseau = reseau;
-    }
+//    public List<Reseau> getListOfReseaux() {
+//        return listOfReseaux;
+//    }
+//
+//    public void setListOfReseaux(List<Reseau> listOfReseaux) {
+//        this.listOfReseaux = listOfReseaux;
+//    }
 
     @Override
     public String toString() {
-        return "Vlan{" + "number=" + number + ", name=" + name + ", batiment=" + batiment + ", reseau=" + reseau + '}';
+        return "Vlan{" + "number=" + number + ", name=" + name + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + this.number;
-        hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + Objects.hashCode(this.batiment);
-        hash = 59 * hash + Objects.hashCode(this.reseau);
+        int hash = 3;
+        hash = 19 * hash + this.number;
+        hash = 19 * hash + Objects.hashCode(this.name);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
@@ -134,11 +123,7 @@ public class Vlan implements Serializable{
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.batiment, other.batiment)) {
-            return false;
-        }
-        return Objects.equals(this.reseau, other.reseau);
+        return true;
     }
-    
     
 }

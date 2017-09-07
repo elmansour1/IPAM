@@ -12,12 +12,9 @@ import com.camtel.ipam.services.IBatimentService;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -94,7 +91,7 @@ public class BatimentResource {
      * @return the ResponseEntity with status 200 (OK) and the list of batiments in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @RequestMapping(value = " /batiments ",
+    @RequestMapping(value = "/batiments",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Batiment>> getAllBatiments()

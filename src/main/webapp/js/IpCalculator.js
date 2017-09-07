@@ -1,0 +1,170 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+function calculeIP($IP,$cidr){
+   var result = $IP.split(".");
+   var q1 = result[0];
+   var q2 = result[1];
+   var q3 = result[2];
+   var q4 = result[3];
+   console.log("le premier octet"+q1);
+   console.log("le premier octet"+q2);
+   console.log("le premier octet"+q3);
+   console.log("le premier octet"+q4);
+   
+   if((q1>=0 && q1<=255) &&(q2>=0 && q2<=255) &&(q3>=0 && q3<=255) &&(q4>=0 && q4<=255) && ($cidr>=0 && $cidr<=32)){
+    //get IP Address binaries
+    var ipBin={};
+    ipBin[1]=String("00000000"+parseInt(q1,10).toString(2)).slice(-8);
+    ipBin[2]=String("00000000"+parseInt(q2,10).toString(2)).slice(-8);
+    ipBin[3]=String("00000000"+parseInt(q3,10).toString(2)).slice(-8);
+    ipBin[4]=String("00000000"+parseInt(q4,10).toString(2)).slice(-8);
+    
+    console.log(ipBin[1]);
+     console.log(ipBin[2]);
+      console.log(ipBin[3]);
+       console.log(ipBin[4]);
+    
+    
+    //decide standart class
+    var standartClass="";
+    
+    if(q1<=126) {
+            
+             standartClass="A";
+        }else if (q1===127) {
+            
+             standartClass="loopback IP";
+        }else if (q1>=128 && q1<=191) {
+             standartClass="B";
+        }else if (q1>=192 && q1<=223) {
+             standartClass="C";
+         }else if (q1>=224 && q1<=239) {
+            standartClass="D (Multicast Address)";
+         }else if (q1>=240 && q1<=225) {
+             standartClass="E (Experimental)";
+        }else {
+            standartClass="Out of range";
+    }
+    console.log("la classe est " +standartClass);
+    
+    //netmask
+    var mask=$cidr;
+    var importantBlock=Math.ceil(mask/8);
+    var importantBlockBinary=ipBin[importantBlock];
+    var maskBinaryBlockCount=mask%8;
+    if(maskBinaryBlockCount===0)importantBlock++;
+    var maskBinaryBlock="";
+    var maskBlock="";
+    
+    for(var i=1; i<=8; i++){
+        if(maskBinaryBlockCount>=i){
+            maskBinaryBlock+="1";
+        }else{
+            maskBinaryBlock+="0";
+        }
+    }
+    
+        //convert binary mask block to decimal
+        maskBlock=parseInt(maskBinaryBlock,2);
+
+        console.log(" je ne le connais pas " +maskBlock);
+        //net & broadcast addr
+        var netBlockBinary="";
+        var bcBlockBinary="";
+        for(var i=1;i<=8;i++){
+            
+            if(maskBinaryBlock.substr(i-1,1)==="1"){
+                netBlockBinary+=importantBlockBinary.substr(i-1,1);
+                bcBlockBinary+=importantBlockBinary.substr(i-1,1);
+            }else{
+                netBlockBinary+="0";
+                bcBlockBinary+="1";
+            }
+        }
+        console.log(netBlockBinary);
+        console.log(bcBlockBinary);
+        //put everything together, create a string container variables
+        var mask="";
+        var maskBinary="";
+        var net="";
+        var bc="";
+        var netBinary="";
+        var bcBinary="";
+        var rangeA="";
+        var rangeB="";
+        
+        //loop to put whole strings block together
+    for(var i=1;i<=4;i++){
+         if(importantBlock>i) {
+             //blocks before the important block.
+                mask+="255";
+                maskBinary+="11111111";
+                netBinary+=ipBin[i];
+                bcBinary+=ipBin[i];
+                net+=parseInt(ipBin[i],2);
+                bc+=parseInt(ipBin[i],2);
+                rangeA+=parseInt(ipBin[i],2);
+                rangeB+=parseInt(ipBin[i],2);
+                
+                }else if (importantBlock===i) {
+                    
+                    //the important block.
+                    mask+=maskBlock;
+                    maskBinary+=maskBinaryBlock;
+                    netBinary+=netBlockBinary;
+                    bcBinary+=bcBlockBinary;
+                    net+=parseInt(netBlockBinary,2);
+                    bc+=parseInt(bcBlockBinary,2);
+                    rangeA+=(parseInt(netBlockBinary,2)+1);
+                    rangeB+=(parseInt(bcBlockBinary,2)-1);
+                    
+                }else {
+                        //block after the important block.
+                        mask+=0;
+                        maskBinary+="00000000";
+                        netBinary+="00000000";
+                        bcBinary+="11111111";
+                        net+="0";
+                        bc+="255";
+                        rangeA+=0;
+                        rangeB+=255;
+                        
+                    }
+                        
+                        //add . separator except the last block
+                        if(i<4){
+                        mask+=".";
+                        maskBinary+=".";
+                        netBinary+=".";
+                        bcBinary+=".";
+                        net+=".";
+                        bc+=".";
+                        rangeA+=".";
+                        rangeB+=".";
+                        
+                        }
+                }
+                
+                var masque = mask;
+                var adresseReseau = net;
+                var bcast = bc;
+                var plage = rangeA + " - " + rangeB;
+                var classe = standartClass;
+                
+                console.log(masque);
+                console.log(adresseReseau);
+                console.log(bcast);
+                console.log(plage);
+                console.log(classe);
+                
+                }else
+                {
+            alert("invalid value");
+    }
+ }
+    

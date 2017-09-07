@@ -6,24 +6,9 @@
 
 package com.camtel.ipam;
 
-import com.camtel.ipam.data.Batiment;
-import com.camtel.ipam.dao.IBatiment;
-import com.camtel.ipam.dao.IReseau;
-import com.camtel.ipam.dao.IVlan;
-import com.camtel.ipam.data.Reseau;
-import com.camtel.ipam.data.Vlan;
-import org.slf4j.Logger;
-
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 
 /**
  *
@@ -40,15 +25,15 @@ public class App {
 //       private IReseau iReseau; 
 //     @Autowired
 //     private IVlan iVlan;
-    @Configuration
-    static class SecurityConfig extends GlobalAuthenticationConfigurerAdapter{
-        
-        public void init(AuthenticationManagerBuilder auth) throws Exception{
-            auth.inMemoryAuthentication()
-                    .withUser("user").password("user").roles("USER").and()
-                    .withUser("admin").password("admin").roles("ADMIN","USER");
-        }
-    }
+//    @Configuration
+//    static class SecurityConfig extends GlobalAuthenticationConfigurerAdapter{
+//        
+//        public void init(AuthenticationManagerBuilder auth) throws Exception{
+//            auth.inMemoryAuthentication()
+//                    .withUser("user").password("user").roles("USER").and()
+//                    .withUser("admin").password("admin").roles("ADMIN","USER");
+//        }
+//    }
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
         

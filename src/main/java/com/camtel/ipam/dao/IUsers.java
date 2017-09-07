@@ -12,6 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author faouzi el mansour <faouzielmansour@yahoo.com>
  */
-public interface IUsers extends JpaRepository<Users, String>{
+public interface IUsers extends JpaRepository<Users, Long>{
     
 }
