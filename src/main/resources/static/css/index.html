@@ -1,0 +1,78 @@
+ <!DOCTYPE html>
+<html >
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>hello welcome IPAM </title> 
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+        <link href="css/bootstrap-theme.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet"/>
+
+
+
+    </head>
+    <body ng-app="ipam">
+        <!-- we want to use SPA vision ; it help us to manage many partials pages in index.html file -->
+        <div class="">
+            <div class="container-fluid" ui-view="navbarContent"></div>
+            
+            <div class="container" ng ui-view="homeContent"></div>
+        </div>
+
+    <script src="lib/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="lib/angular.min.js" ></script>
+    <script src="lib/bootstrap.js" type="text/javascript"></script>
+    <script type="text/javascript" src="lib/ui-bootstrap-tpls.min.js"></script>
+    <script src="lib/angular-translate.js"></script>
+    <script src="lib/angular-aria.min.js" type="text/javascript"></script>
+    <script src="lib/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="lib/angular-route.js"></script>
+    <script type="text/javascript" src="lib/angular-resource.js"></script>
+    <script src="lib/angular-animate.js" type="text/javascript"></script>
+    <script type="text/javascript" src="lib/angular-ui-router.js"></script>
+
+    <script src="js/app.state.js" type="text/javascript"></script>
+    <script src="js/services/app.services.js" type="text/javascript"></script>
+    <script src="js/controllers/app.controllers.js" type="text/javascript"></script>
+
+
+    <script src="app.state.js" type="text/javascript"></script>
+    <script src="js/home/controllers/home.controllers.js" type="text/javascript"></script>
+    
+    <script src="modules/administrateur/administrateur.state.js" type="text/javascript"></script>
+    <script src="modules/administrateur/js/administrateur.services.js" type="text/javascript"></script>
+    <script src="modules/administrateur/js/administrateur.controllers.js" type="text/javascript"></script>
+
+    <script src="modules/building/building.state.js" type="text/javascript"></script>
+    <script src="modules/building/js/building.services.js" type="text/javascript"></script>
+    <script src="modules/building/js/building.controller.js" type="text/javascript"></script>
+    
+    <script src="modules/network/network.state.js" type="text/javascript"></script>
+    <script src="modules/network/js/network.services.js" type="text/javascript"></script>
+    <script src="modules/network/js/network.controller.js" type="text/javascript"></script>
+    
+    <script src="modules/subnet/subnet.state.js" type="text/javascript"></script>
+    <script src="modules/subnet/js/subnet.services.js" type="text/javascript"></script>
+    <script src="modules/subnet/js/subnet.controller.js" type="text/javascript"></script>
+    
+    <script src="modules/users/users.state.js" type="text/javascript"></script>
+    <script src="modules/users/js/user.services.js" type="text/javascript"></script>
+    <script src="modules/users/js/user.controller.js" type="text/javascript"></script>
+    
+    <script src="modules/vlan/vlan.state.js" type="text/javascript"></script>
+    <script src="modules/vlan/js/vlan.services.js" type="text/javascript"></script>
+    <script src="modules/vlan/js/vlan.controller.js" type="text/javascript"></script>
+    
+    <script src="modules/equipement/equipement.state.js" type="text/javascript"></script>
+    <script src="modules/equipement/js/equipement.services.js" type="text/javascript"></script>
+    <script src="modules/equipement/js/equipement.controller.js" type="text/javascript"></script>
+    
+<!--    <script src="modules/home/home.state.js" type="text/javascript"></script>
+    <script src="modules/home/js/homeController.js" type="text/javascript"></script>
+    -->
+    <script type="text/javascript" src="modules/module.state.js"></script>
+
+
+</body>
+</html>
